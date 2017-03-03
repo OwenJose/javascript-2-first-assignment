@@ -1,0 +1,49 @@
+*{
+	padding: 0;
+}
+body {
+	background: rgba(0,0,0,.8);
+	color: white;
+}
+nav {
+	background-color: teal;
+	width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    &.sort-nav{
+	top: 99px;
+	background-color: green;
+	}
+}
+
+ul{
+	display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    width: 100%;
+    justify-content: space-around;
+	&.movieList{
+		justify-content: center;
+		padding: (150px 0 0 0);
+	}
+}
+li{
+	display: inline;
+	cursor: pointer;
+}
+img{
+	width: 350px;
+	height: 475px;
+	&:hover{
+		opacity: .5;
+	}
+}
+#top-icon{
+	height: 1em;
+	width: 1em;
+}

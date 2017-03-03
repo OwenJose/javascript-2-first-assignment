@@ -3,22 +3,29 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Movie Database</title>
+	<link rel="stylesheet" type="text/css" href="main.css">
 </head>
 <body>
 	<!-- The topbar with headeline -->
 	<nav class="top-bar">
-		<div class="to-top">
-			<img src="grafics/to_top.svg" alt="to_top_icon">
-		</div>
-		<div><h1>MovieDatabase</h1></div>
-		<div class="addButton">Add Movie</div>
+		<ul>
+			<!-- is soposed to ptake you to the top -->
+			<li>	
+				<img id="top-icon" src="grafics/to_top.svg" alt="to_top_icon">
+			</li>
+			<li><h1>MovieDatabase</h1></li>
+			<!-- i'm thinking of creating a popup form -->
+			<li class="addButton">Add Movie</li>
+		</ul>
 	</nav>
 	<!-- an smallnavbar for sorting the movies -->
-	<nav class="sort-bar">
-		<div>Sort by:</div>
-		<div id="title" >Title</div>
-		<div id="rating">Rating</div>
-		<div id="year-of-release">Year Of release</div>
+	<nav class="sort-nav">
+		<ul>
+			<li class="sort-items">Sort by:</li>
+			<li class="sort-items" id="title" >Title</li>
+			<li class="sort-items" id="rating">Rating</li>
+			<li class="sort-items" id="year-of-release">Year Of release</li>
+		</ul>
 	</nav>
 	<script src="movie_database.js"></script>
 </body>
