@@ -1,3 +1,6 @@
+// HWERE DOES THE EXTRA ARRAY COME FROM??!!
+
+
 // revealing module patter
 // i think is more readable, makes sense in my head
 const MovieDatabase = (function() {
@@ -11,7 +14,7 @@ const MovieDatabase = (function() {
 		rating: [10,9,8,6,10],
 		poster: "http://img.goldposter.com/2015/04/Braveheart_poster_goldposter_com_9.jpg",
 		avrgRating: function() {
-			let sum;
+			let sum = 0;
 			for (var i = 0; i < this.rating.length; i++) {
 				sum += this.rating[i];
 			}
@@ -25,7 +28,7 @@ const MovieDatabase = (function() {
 		rating: [9,8,4,8,10,9,10],
 		poster: "http://ilarge.lisimg.com/image/5707020/1118full-the-shawshank-redemption-artwork.jpg",
 		avrgRating: function() {
-			let sum;
+			let sum = 0;
 			for (var i = 0; i < this.rating.length; i++) {
 				sum += this.rating[i];
 			}
@@ -118,27 +121,30 @@ const MovieDatabase = (function() {
 	},
 	];
 
+	
 	// this is a constructor
-	const AddMovie = (title,year,rating,poster,...genre) => {
-			this.title =  title;
-			this.releaseyear = year;
-			this.genre = genre;
-			this.rating = rating;
-			this.poster = poster;
+	const CreateMovie = function(title,year,rating,poster,...genre){
+		this.title =  title;
+		this.releaseyear = year;
+		this.genre = genre;
+		this.rating = rating;
+		this.poster = poster;
 	};
 	// the average rating function should always be included
-	AddMovie.avrgRating = function() {
+	CreateMovie.prototype.avrgRating = function(){
 		let sum = 0;
 		for (var i = 0; i < this.rating.length; i++) {
 			sum += this.rating[i];
 		}
 		return sum/this.rating.length;
 	};
-	// does this work?? It 
-	AddMovie.addItToArray = (function() {
-		movies.push(this);
-	})();
 	
+
+	// does this work?? I want it to add the new movie to the movie array.
+	// CreateMovie.prototype.AddMovie = function((){
+	// 	movies.push();
+	// })();
+
 	// a way to get all the availiable info
 	// later to beable to sort and display....
 	const getAllMovieInfo = () => {
@@ -228,16 +234,14 @@ const MovieDatabase = (function() {
 	// the functions to call on.
 	return {
 		rateMovie: rateMovie,
-		AddMovie: AddMovie,
+		CreateMovie: CreateMovie,
 		getAllMovieInfo: getAllMovieInfo,
 		getMoviesByGenres: getMoviesByGenres,
 		getMoviesByYear: getMoviesByYear,
 		getWortsRatedMovie: getWortsRatedMovie,
-		getTopRatedMovie: getTopRatedMovie,
+		getTopRatedMovie: getTopRatedMovie
 	};
 })();
-
-MovieDatabase.AddMovie("the Matrix triology",2003,9,"https://s-media-cache-ak0.pinimg.com/originals/cd/d2/88/cdd2885ed4bd015cf75ffc3e6b150012.jpg","action","sci-fi");
 
 
 // DOM manipulation time!!
@@ -247,7 +251,7 @@ MovieDatabase.AddMovie("the Matrix triology",2003,9,"https://s-media-cache-ak0.p
 (function (){
 	let movieData = MovieDatabase.getAllMovieInfo();
 	let moviesList = document.createElement("ul");
-	moviesList.setAttribute("class","movieList");
+	moviesList.setAttribute("id","movieList");
 	moviesList.setAttribute("style","list-style-type: none;" + " margin: 0;");
 	for(let i= 1; i < movieData.length; i++)
 	{	
@@ -325,8 +329,28 @@ MovieDatabase.AddMovie("the Matrix triology",2003,9,"https://s-media-cache-ak0.p
 			document.getElementsByClassName("cover-art")[i-1].setAttribute("src",movieList[i].poster);
 		}
 	});
-})();
 
+	document.getElementById("addButton").addEventListener("click", function(){
+		
+		let matrix = new MovieDatabase.CreateMovie("the Matrix triology",2003,9,"https://s-media-cache-ak0.pinimg.com/originals/cd/d2/88/cdd2885ed4bd015cf75ffc3e6b150012.jpg","action","sci-fi");
+		let moviesList = document.getElementById("movieList")
+		let movieData = MovieDatabase.getAllMovieInfo();
+		let listItem = document.createElement("li");
+		let img = document.createElement("img");
+		
+		movieData.push(matrix);
+
+		// console.log(matrix,moviesList,movieData,listItem,img);
+		
+		img.setAttribute("src",movieData[movieData.length - 1].poster);
+		img.setAttribute("alt",movieData[movieData.length - 1].title);
+		img.setAttribute("class","cover-art");
+		listItem.setAttribute("style","padding: 5px;");
+		
+		moviesList.appendChild(listItem);
+		listItem.appendChild(img);
+	});
+})();
 // i was thinking i might be able to add a popup with the info in the 
 // moviedatabase and the posibility to rate the movie
 // document.getElementById("rating").addEventListener("click", function(){}
