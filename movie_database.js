@@ -1,4 +1,4 @@
-// HWERE DOES THE EXTRA ARRAY COME FROM??!!
+// WHERE DOES THE EXTRA ARRAY COME FROM??!!
 
 
 // revealing module patter
@@ -14,11 +14,12 @@ const MovieDatabase = (function() {
 		rating: [10,9,8,6,10],
 		poster: "http://img.goldposter.com/2015/04/Braveheart_poster_goldposter_com_9.jpg",
 		avrgRating: function() {
-			let sum = 0;
+			let sum = 0, average = 0;
 			for (var i = 0; i < this.rating.length; i++) {
 				sum += this.rating[i];
 			}
-			return sum/this.rating.length;
+			average = sum/this.rating.length;
+			return average.toFixed(1);
 		}
 	},
 	{
@@ -28,11 +29,12 @@ const MovieDatabase = (function() {
 		rating: [9,8,4,8,10,9,10],
 		poster: "http://ilarge.lisimg.com/image/5707020/1118full-the-shawshank-redemption-artwork.jpg",
 		avrgRating: function() {
-			let sum = 0;
+			let sum = 0, average = 0;
 			for (var i = 0; i < this.rating.length; i++) {
 				sum += this.rating[i];
 			}
-			return sum/this.rating.length;
+			average = sum/this.rating.length;
+			return average.toFixed(1);
 		}
 	},
 	{
@@ -42,11 +44,12 @@ const MovieDatabase = (function() {
 		rating: [10,6,3,8,5,8,9],
 		poster: "https://s-media-cache-ak0.pinimg.com/originals/3a/59/71/3a597156547ca6d325a8f4b1cf79c746.jpg",
 		avrgRating: function() {
-			let sum = 0;
+			let sum = 0, average = 0;
 			for (var i = 0; i < this.rating.length; i++) {
 				sum += this.rating[i];
 			}
-			return sum/this.rating.length;
+			average = sum/this.rating.length;
+			return average.toFixed(1);
 		}
 	},
 	{
@@ -56,11 +59,12 @@ const MovieDatabase = (function() {
 		rating: [10,8,6,9,9,8,8,],
 		poster: "https://s-media-cache-ak0.pinimg.com/originals/f0/a3/c5/f0a3c5590dab0a7d7cdc273208eedd63.jpg",
 		avrgRating: function() {
-			let sum = 0;
+			let sum = 0, average = 0;
 			for (var i = 0; i < this.rating.length; i++) {
 				sum += this.rating[i];
 			}
-			return sum/this.rating.length;
+			average = sum/this.rating.length;
+			return average.toFixed(1);
 		}
 	},
 	{
@@ -70,11 +74,12 @@ const MovieDatabase = (function() {
 		rating: [8,7,6,3,5,2,9],
 		poster: "https://www.coningsbygallery.com/image/2259/super",
 		avrgRating: function() {
-			let sum = 0;
+			let sum = 0, average = 0;
 			for (var i = 0; i < this.rating.length; i++) {
 				sum += this.rating[i];
 			}
-			return sum/this.rating.length;
+			average = sum/this.rating.length;
+			return average.toFixed(1);
 		}
 	},
 	{
@@ -84,11 +89,12 @@ const MovieDatabase = (function() {
 		rating: [8,9,10,7,8,9,8,9],
 		poster: "https://thedullwoodexperiment.files.wordpress.com/2015/10/inception.jpg",
 		avrgRating: function() {
-			let sum = 0;
+			let sum = 0, average = 0;
 			for (var i = 0; i < this.rating.length; i++) {
 				sum += this.rating[i];
 			}
-			return sum/this.rating.length;
+			average = sum/this.rating.length;
+			return average.toFixed(1);
 		}
 	},
 	{
@@ -98,11 +104,12 @@ const MovieDatabase = (function() {
 		rating: [10,9,8,6,10],
 		poster: "https://s-media-cache-ak0.pinimg.com/originals/5f/5d/62/5f5d62e677bc0ce40e6a258ad8277064.jpg",
 		avrgRating: function() {
-			let sum = 0;
+			let sum = 0, average = 0;
 			for (var i = 0; i < this.rating.length; i++) {
 				sum += this.rating[i];
 			}
-			return sum/this.rating.length;
+			average = sum/this.rating.length;
+			return average.toFixed(1);
 		}
 	},
 	{
@@ -112,11 +119,12 @@ const MovieDatabase = (function() {
 		rating: [10,10,10,9,8,10],
 		poster: "https://s-media-cache-ak0.pinimg.com/originals/37/55/f3/3755f357da7994677309ccd37e276129.jpg",
 		avrgRating: function(){
-			let sum = 0;
+			let sum = 0, average = 0;
 			for (var i = 0; i < this.rating.length; i++) {
 				sum += this.rating[i];
 			}
-			return sum/this.rating.length;
+			average = sum/this.rating.length;
+			return average.toFixed(1);
 		}
 	},
 	];
@@ -127,23 +135,24 @@ const MovieDatabase = (function() {
 		this.title =  title;
 		this.releaseyear = year;
 		this.genre = genre;
-		this.rating = rating;
+		this.rating = [rating];
 		this.poster = poster;
 	};
 	// the average rating function should always be included
 	CreateMovie.prototype.avrgRating = function(){
-		let sum = 0;
-		for (var i = 0; i < this.rating.length; i++) {
-			sum += this.rating[i];
-		}
-		return sum/this.rating.length;
-	};
-	
+		// reduce??
+		let sum = 0, average = 0;
+			for (var i = 0; i < this.rating.length; i++) {
+				sum += this.rating[i];
+			}
+			average = sum/this.rating.length;
+			return average.toFixed(1);
+		};
+	// adding the new movie to the database
 
-	// does this work?? I want it to add the new movie to the movie array.
-	// CreateMovie.prototype.AddMovie = function((){
-	// 	movies.push();
-	// })();
+	CreateMovie.prototype.addMovie = function(){
+		movies.push(this);
+	};
 
 	// a way to get all the availiable info
 	// later to beable to sort and display....
@@ -201,6 +210,7 @@ const MovieDatabase = (function() {
 	const getMoviesByYear = (year) => {
 		// creating an array to store the movie/movies
 		let sortedMovies = [];
+		// can i use map
 		for(let i = 0; i < movies.length; i++){
 			if(movies[i].releaseyear === year){
 				sortedMovies.push(movies[i].title);
@@ -213,6 +223,7 @@ const MovieDatabase = (function() {
 	// the we go throu the genres and store the movie within that genre in an array
 	const getMoviesByGenres = (genre) => {
 		const sortedMovies = [];
+		// map??
 		for(let i = 0; i < movies.length; i++){
 			for(let j = 0; j < movies[i].genre.length; j++){
 				if(movies[i].genre[j] === genre.toLowerCase()){
@@ -248,30 +259,65 @@ const MovieDatabase = (function() {
 
 // this is where i dispay all the movie with some cover art.
 // create a function to make variables private
+// create all the ellements needed
 (function (){
 	let movieData = MovieDatabase.getAllMovieInfo();
+	let popUp = document.createElement("div");
 	let moviesList = document.createElement("ul");
+	popUp.setAttribute("id","popUp");
 	moviesList.setAttribute("id","movieList");
-	moviesList.setAttribute("style","list-style-type: none;" + " margin: 0;");
+	moviesList.setAttribute("style","list-style-type: none;" + "padding-top: 150px;" + " margin: 0;");
 	for(let i= 1; i < movieData.length; i++)
 	{	
 		let listItem = document.createElement("li");
 		let img = document.createElement("img");
+		let infoCover = document.createElement("div");
+		let container = document.createElement("div");
+		let title = document.createElement("h2");
+		let genre = document.createElement("p");
+		let year = document.createElement("p");
+		let rating = document.createElement("p");
+		let edit = document.createElement("button");
+
 		img.setAttribute("src",movieData[i].poster);
 		img.setAttribute("alt",movieData[i].title);
 		img.setAttribute("class","cover-art");
+		title.setAttribute("class","title");
+		genre.setAttribute("class","genre");
+		year.setAttribute("class","year");
+		rating.setAttribute("class","rating");
+		infoCover.setAttribute("class","cover-up");
+		container.setAttribute("class","container");
 		listItem.setAttribute("style","padding: 5px;");
+		edit.setAttribute("class","edit-button");
+
+
+		title.innerHTML = `${movieData[i].title.toUpperCase()}`;
+		genre.innerHTML = `${movieData[i].genre}`;
+		year.innerHTML = `${movieData[i].releaseyear}`
+		rating.innerHTML = `${movieData[i].avrgRating()}`;
+		edit.innerHTML = "Edit"
+
 		moviesList.appendChild(listItem);
-		listItem.appendChild(img);
+		listItem.appendChild(container);
+		container.appendChild(img);
+		container.appendChild(infoCover);
+		infoCover.appendChild(title);
+		infoCover.appendChild(genre);
+		infoCover.appendChild(rating);
+		infoCover.appendChild(year);
+		infoCover.appendChild(edit);
+
 	}
+	document.body.appendChild(popUp);
 	document.body.appendChild(moviesList);
 })();
-
 
 (function (){
 	// trying to sort the movie list alfabetically
 	document.getElementById("title").addEventListener("click", function(){
 		let movieList = MovieDatabase.getAllMovieInfo();
+		// map??
 		movieList.sort(function(a, b) {
 	  	if (a.title < b.title) {
 	    	return -1;
@@ -282,15 +328,22 @@ const MovieDatabase = (function() {
 	  	else
 	  		return 0;
 		});
-
+		console.log("alfabetically");
 		for (let i = 1; i < movieList.length; i++)
 		{
+			console.log(movieList[i]);
+			console.log(this);
 			document.getElementsByClassName("cover-art")[i-1].setAttribute("src",movieList[i].poster);
+			document.getElementsByClassName("title")[i-1].innerHTML = movieList[i].title.toUpperCase();
+			document.getElementsByClassName("rating")[i-1].innerHTML = movieList[i].avrgRating();
+			document.getElementsByClassName("genre")[i-1].innerHTML = movieList[i].genre;
+			document.getElementsByClassName("year")[i-1].innerHTML = movieList[i].releaseyear;
 		}
 	});
 
 	// sorting after year of releease
 	document.getElementById("year-of-release").addEventListener("click", function(){
+		// map??
 		let movieList = MovieDatabase.getAllMovieInfo();
 		movieList.sort(function(a, b) {
 	  	if (a.releaseyear < b.releaseyear) {
@@ -302,15 +355,20 @@ const MovieDatabase = (function() {
 	  	else
 	  		return 0;
 		});
-
+		console.log("year-of-release");
 		for (let i = 1; i < movieList.length; i++)
 		{
+			console.log(movieList[i]);
 			document.getElementsByClassName("cover-art")[i-1].setAttribute("src",movieList[i].poster);
+			document.getElementsByClassName("title")[i-1].innerHTML = movieList[i].title.toUpperCase();
+			document.getElementsByClassName("rating")[i-1].innerHTML = movieList[i].avrgRating();
+			document.getElementsByClassName("genre")[i-1].innerHTML = movieList[i].genre;
+			document.getElementsByClassName("year")[i-1].innerHTML = movieList[i].releaseyear;
 		}
 	});
 
 	// sorting after avg.rating
-	// that doesn't work well....fakk
+	// that doesn't work well....WHY!!!???
 	document.getElementById("rating").addEventListener("click", function(){
 		let movieList = MovieDatabase.getAllMovieInfo();
 		movieList.sort(function(a, b) {
@@ -323,34 +381,78 @@ const MovieDatabase = (function() {
 	  	else
 	  		return 0;
 		});
-
+		console.log("average rating");
 		for (let i = 1; i < movieList.length; i++)
 		{
+			console.log(movieList[i].title + " " + movieList[i].avrgRating());
 			document.getElementsByClassName("cover-art")[i-1].setAttribute("src",movieList[i].poster);
+			document.getElementsByClassName("title")[i-1].innerHTML = movieList[i].title.toUpperCase();
+			document.getElementsByClassName("rating")[i-1].innerHTML = movieList[i].avrgRating();
+			document.getElementsByClassName("genre")[i-1].innerHTML = movieList[i].genre;
+			document.getElementsByClassName("year")[i-1].innerHTML = movieList[i].releaseyear;
 		}
 	});
+	
+	// crating a new movie for the database.
+	// document.getElementById("comfirmAdd").addEventListener("click", function(){
+		
+	// 	let newMovie = new MovieDatabase.CreateMovie("the Matrix triology",2003,9.0,"https://s-media-cache-ak0.pinimg.com/originals/cd/d2/88/cdd2885ed4bd015cf75ffc3e6b150012.jpg","action","sci-fi");
+	// 	let moviesList = document.getElementById("movieList")
+	// 	let movieData = MovieDatabase.getAllMovieInfo();
+	// 	let listItem = document.createElement("li");
+	// 	let img = document.createElement("img");
+		
+		
+	// 	listItem.setAttribute("style","padding: 5px;");
+	// 	img.setAttribute("class","cover-art");
+	// 	img.setAttribute("src",movieData[movieData.length - 1].poster);
+	// 	img.setAttribute("alt",movieData[movieData.length - 1].title);
+		
+		
+	// 	moviesList.appendChild(listItem);
+	// 	listItem.appendChild(img);
 
+	// 	newMovie.addMovie();
+	// 	console.log(MovieDatabase.getAllMovieInfo());
+	// });
+
+	// this is just to enlarge the img....
+	for (let i = 1; i < MovieDatabase.getAllMovieInfo().length; i++) {
+		document.getElementsByClassName("cover-up")[i-1].addEventListener("click", function(){
+			let info = MovieDatabase.getAllMovieInfo();
+			let popUp = document.getElementById("popUp");
+			let img = document.createElement("img");
+			img.src = document.getElementsByClassName("cover-art")[i-1].src;
+			popUp.style.display = "block";
+			popUp.appendChild(img);
+			console.log();
+		});
+		
+		// same pop-up ass add but the only thing u can do is to add rating and/or genre
+		document.getElementsByClassName("edit-button")[i-1].addEventListener("click", function(){
+			let popUp = document.getElementById("popUp");
+			popUp.style.display = "block";
+			popUp.addEventListener("click", function() { 
+	   			popUp.style.display = "none";
+	   			//popUp.removeChild(img);
+			});
+		});
+	}
+
+	// i was thinking i might be able to add a popup with the info in the 
+	// moviedatabase and the posibility to rate the movie
+
+	// Opens a pop-up with av form to create a new movie
 	document.getElementById("addButton").addEventListener("click", function(){
-		
-		let matrix = new MovieDatabase.CreateMovie("the Matrix triology",2003,9,"https://s-media-cache-ak0.pinimg.com/originals/cd/d2/88/cdd2885ed4bd015cf75ffc3e6b150012.jpg","action","sci-fi");
-		let moviesList = document.getElementById("movieList")
-		let movieData = MovieDatabase.getAllMovieInfo();
-		let listItem = document.createElement("li");
-		let img = document.createElement("img");
-		
-		movieData.push(matrix);
+		let popUp = document.getElementById("popUp");
+		let form = document.getElementById("new-movie");
+		popUp.style.display = "block";
+		popUp.appendChild(form);
 
-		// console.log(matrix,moviesList,movieData,listItem,img);
-		
-		img.setAttribute("src",movieData[movieData.length - 1].poster);
-		img.setAttribute("alt",movieData[movieData.length - 1].title);
-		img.setAttribute("class","cover-art");
-		listItem.setAttribute("style","padding: 5px;");
-		
-		moviesList.appendChild(listItem);
-		listItem.appendChild(img);
+	});
+	// closing the poop_up
+	document.getElementById("popUp").addEventListener("click", function() { 
+		this.style.display = "none";
+		this.innerHTML = "";
 	});
 })();
-// i was thinking i might be able to add a popup with the info in the 
-// moviedatabase and the posibility to rate the movie
-// document.getElementById("rating").addEventListener("click", function(){}
