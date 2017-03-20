@@ -41,7 +41,7 @@ img{
 	height: 500px;
 }
 .container h2{
-	padding-top: 50%;
+	padding-top: 45%;
   	p{
   		font-size: 20px;
   		position: absolute;
@@ -77,6 +77,9 @@ img{
 		cursor: pointer;
 	}
 }
+.new-movie{
+	display: none;
+}
 #top-icon{
 	height: 1em;
 	width: 1em;
@@ -93,9 +96,14 @@ img{
     background-color: rgba(0,0,0,0.9);
     img{
     	margin: auto;
-    	display: block;
+    	display: none;
     	height: 90%;
     	width: auto;
     	padding-top: 2em;
     }
+}
+#new-movie{
+	display: none;
+	padding-top: 15%;
+	padding-left: 45%;
 }

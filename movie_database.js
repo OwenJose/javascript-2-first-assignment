@@ -254,7 +254,6 @@ const MovieDatabase = (function() {
 	};
 })();
 
-
 // DOM manipulation time!!
 
 // this is where i dispay all the movie with some cover art.
@@ -262,9 +261,7 @@ const MovieDatabase = (function() {
 // create all the ellements needed
 (function (){
 	let movieData = MovieDatabase.getAllMovieInfo();
-	let popUp = document.createElement("div");
 	let moviesList = document.createElement("ul");
-	popUp.setAttribute("id","popUp");
 	moviesList.setAttribute("id","movieList");
 	moviesList.setAttribute("style","list-style-type: none;" + "padding-top: 150px;" + " margin: 0;");
 	for(let i= 1; i < movieData.length; i++)
@@ -290,7 +287,7 @@ const MovieDatabase = (function() {
 		container.setAttribute("class","container");
 		listItem.setAttribute("style","padding: 5px;");
 		edit.setAttribute("class","edit-button");
-
+		edit.setAttribute("type","button"); // to not refresh the page.
 
 		title.innerHTML = `${movieData[i].title.toUpperCase()}`;
 		genre.innerHTML = `${movieData[i].genre}`;
@@ -314,10 +311,10 @@ const MovieDatabase = (function() {
 })();
 
 (function (){
-	// trying to sort the movie list alfabetically
+	// sort the movie list alfabetically
 	document.getElementById("title").addEventListener("click", function(){
 		let movieList = MovieDatabase.getAllMovieInfo();
-		// map??
+		// movieList.title.map??
 		movieList.sort(function(a, b) {
 	  	if (a.title < b.title) {
 	    	return -1;
@@ -328,23 +325,27 @@ const MovieDatabase = (function() {
 	  	else
 	  		return 0;
 		});
+		
 		console.log("alfabetically");
 		for (let i = 1; i < movieList.length; i++)
 		{
-			console.log(movieList[i]);
-			console.log(this);
+			// console.log(movieList[i]);
+			// console.log(this);
 			document.getElementsByClassName("cover-art")[i-1].setAttribute("src",movieList[i].poster);
 			document.getElementsByClassName("title")[i-1].innerHTML = movieList[i].title.toUpperCase();
 			document.getElementsByClassName("rating")[i-1].innerHTML = movieList[i].avrgRating();
 			document.getElementsByClassName("genre")[i-1].innerHTML = movieList[i].genre;
 			document.getElementsByClassName("year")[i-1].innerHTML = movieList[i].releaseyear;
 		}
+
+		console.log(MovieDatabase.getAllMovieInfo());
 	});
 
 	// sorting after year of releease
 	document.getElementById("year-of-release").addEventListener("click", function(){
-		// map??
+		// movieList.releaseYear.map??
 		let movieList = MovieDatabase.getAllMovieInfo();
+		
 		movieList.sort(function(a, b) {
 	  	if (a.releaseyear < b.releaseyear) {
 	    	return 1;
@@ -355,22 +356,27 @@ const MovieDatabase = (function() {
 	  	else
 	  		return 0;
 		});
+		
 		console.log("year-of-release");
 		for (let i = 1; i < movieList.length; i++)
 		{
-			console.log(movieList[i]);
+			// console.log(movieList[i]);
 			document.getElementsByClassName("cover-art")[i-1].setAttribute("src",movieList[i].poster);
 			document.getElementsByClassName("title")[i-1].innerHTML = movieList[i].title.toUpperCase();
 			document.getElementsByClassName("rating")[i-1].innerHTML = movieList[i].avrgRating();
 			document.getElementsByClassName("genre")[i-1].innerHTML = movieList[i].genre;
 			document.getElementsByClassName("year")[i-1].innerHTML = movieList[i].releaseyear;
 		}
+
+		console.log(MovieDatabase.getAllMovieInfo());
 	});
 
 	// sorting after avg.rating
 	// that doesn't work well....WHY!!!???
 	document.getElementById("rating").addEventListener("click", function(){
+		// // movieList.avrgRating.map??
 		let movieList = MovieDatabase.getAllMovieInfo();
+		
 		movieList.sort(function(a, b) {
 	  	if (a.avrgRating < b.avrgRating) {
 	    	return 1;
@@ -381,22 +387,25 @@ const MovieDatabase = (function() {
 	  	else
 	  		return 0;
 		});
+		
 		console.log("average rating");
 		for (let i = 1; i < movieList.length; i++)
 		{
-			console.log(movieList[i].title + " " + movieList[i].avrgRating());
+			// console.log(movieList[i].title + " " + movieList[i].avrgRating());
 			document.getElementsByClassName("cover-art")[i-1].setAttribute("src",movieList[i].poster);
 			document.getElementsByClassName("title")[i-1].innerHTML = movieList[i].title.toUpperCase();
 			document.getElementsByClassName("rating")[i-1].innerHTML = movieList[i].avrgRating();
 			document.getElementsByClassName("genre")[i-1].innerHTML = movieList[i].genre;
 			document.getElementsByClassName("year")[i-1].innerHTML = movieList[i].releaseyear;
 		}
+
+		console.log(MovieDatabase.getAllMovieInfo());
 	});
 	
-	// crating a new movie for the database.
-	// document.getElementById("comfirmAdd").addEventListener("click", function(){
+	//  crating a new movie for the database.
+	//  document.getElementById("comfirmAdd").addEventListener("click", function(){
 		
-	// 	let newMovie = new MovieDatabase.CreateMovie("the Matrix triology",2003,9.0,"https://s-media-cache-ak0.pinimg.com/originals/cd/d2/88/cdd2885ed4bd015cf75ffc3e6b150012.jpg","action","sci-fi");
+	//  let newMovie = new MovieDatabase.CreateMovie("the Matrix triology",2003,9.0,"https://s-media-cache-ak0.pinimg.com/originals/cd/d2/88/cdd2885ed4bd015cf75ffc3e6b150012.jpg","action","sci-fi");
 	// 	let moviesList = document.getElementById("movieList")
 	// 	let movieData = MovieDatabase.getAllMovieInfo();
 	// 	let listItem = document.createElement("li");
@@ -414,28 +423,27 @@ const MovieDatabase = (function() {
 
 	// 	newMovie.addMovie();
 	// 	console.log(MovieDatabase.getAllMovieInfo());
-	// });
+	//  });
 
-	// this is just to enlarge the img....
+	//  this is just to enlarge the img....
 	for (let i = 1; i < MovieDatabase.getAllMovieInfo().length; i++) {
 		document.getElementsByClassName("cover-up")[i-1].addEventListener("click", function(){
-			let info = MovieDatabase.getAllMovieInfo();
 			let popUp = document.getElementById("popUp");
-			let img = document.createElement("img");
+			let img = document.getElementById("big-pic");
+			
 			img.src = document.getElementsByClassName("cover-art")[i-1].src;
 			popUp.style.display = "block";
-			popUp.appendChild(img);
-			console.log();
+			img.style.display = "block";
+
+			console.log(MovieDatabase.getAllMovieInfo());
 		});
 		
 		// same pop-up ass add but the only thing u can do is to add rating and/or genre
 		document.getElementsByClassName("edit-button")[i-1].addEventListener("click", function(){
-			let popUp = document.getElementById("popUp");
-			popUp.style.display = "block";
-			popUp.addEventListener("click", function() { 
-	   			popUp.style.display = "none";
-	   			//popUp.removeChild(img);
-			});
+			// let popUp = document.getElementById("popUp");
+			// let form = document.getElementById("new-movie");
+			// popUp.style.display = "block";
+			// form.style.display = "block";
 		});
 	}
 
@@ -444,15 +452,74 @@ const MovieDatabase = (function() {
 
 	// Opens a pop-up with av form to create a new movie
 	document.getElementById("addButton").addEventListener("click", function(){
-		let popUp = document.getElementById("popUp");
 		let form = document.getElementById("new-movie");
+		let popUp = document.getElementById("popUp");
+		
 		popUp.style.display = "block";
-		popUp.appendChild(form);
+		form.style.display = "block";
 
+		console.log(MovieDatabase.getAllMovieInfo());
 	});
 	// closing the poop_up
-	document.getElementById("popUp").addEventListener("click", function() { 
-		this.style.display = "none";
-		this.innerHTML = "";
+	document.getElementById("big-pic").addEventListener("click", function() { 
+		let form = document.getElementById("new-movie");
+		let pic = document.getElementById("big-pic");
+		let popUp = document.getElementById("popUp");
+		
+		popUp.style.display = "none";
+		form.style.display = "none";
+		pic.style.display = "none";
+
+		console.log(MovieDatabase.getAllMovieInfo());
+	});
+	// making a new movieobjekt ta add to the list
+	// I don't understand why i don't get it to work, does the confirm button reload the page??? Yes it does!!! fixed!
+	document.getElementById("confirm-button").addEventListener("click", function(){
+
+		let title = document.getElementById("input-title").value;
+		let year = document.getElementById("input-releaseYear").value;
+		let rating = document.getElementById("input-rating").value;
+		let poster = document.getElementById("input-url").value;
+		let genre = document.getElementById("input-genre").value;
+		
+		let form = document.getElementById("new-movie");
+		let popUp = document.getElementById("popUp");
+				
+		let newMovie = new MovieDatabase.CreateMovie(title, year, rating, poster, genre);
+		
+		newMovie.addMovie();
+		
+		popUp.style.display = "none";
+		form.style.display = "none";
+
+		console.log(MovieDatabase.getAllMovieInfo());
+	});
+	// closing the pop-up
+	document.getElementById("cancel-button").addEventListener("click", function() { 
+		let form = document.getElementById("new-movie");
+		let pic = document.getElementById("big-pic");
+		let popUp = document.getElementById("popUp");
+		
+		popUp.style.display = "none";
+		form.style.display = "none";
+		pic.style.display = "none";
+
+		console.log(MovieDatabase.getAllMovieInfo());
 	});
 })();
+
+// Things I need: 
+// * Not adding anything when form is empty, 
+// * On edit klick: Want the form to pop-up whith pre-filled form 
+//   were I don't want changes to happen and left empty were I want the added info, genre or/and rating, 
+// * Not dispaying movie without rating
+// * get the to top button to work
+
+// BUG: the MovieDatabase Copies itself and adds it to the database, and when i add a new movie it disapears....WHAT!!!
+// (that is why all my loops starts att 1)
+// BUG: Edit button acts like the pic when clicked on even thou I don't whant it to.... do i click on both???
+
+
+// Creating a function that gets the elements for setting attributes in the sorting and for the pop-up, 
+// or at least one for closing the pop-up, then call on it within the eventlisteners.....DRY. Would that work?
+// decleration programming, is it what I have done here??

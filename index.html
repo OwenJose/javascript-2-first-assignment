@@ -6,20 +6,6 @@
 	<link rel="stylesheet" type="text/css" href="main.css">
 </head>
 <body>
-	<form name="Add new movie" id="new-movie">
-		<label for="title">Title: </label>
-		<input type="text" name="title" id="title">
-		<label for="genre">Genre: </label>
-		<input type="text" name="genre" id="genre">
-		<label for="releaseYear">Release: </label>
-		<input type="text" name="releaseYear" id="releaseYear">
-		<label for="url">Image URL: </label>
-		<input type="text" name="url" id="url">
-		<label for="rating">Rating: </label>
-		<input type="text" name="rating" id="rating">
-		<button id="confirm-button">Confirm</button>
-		<button id="cancel-button">Cancel</button>
-	</form>
 	<!-- The topbar with headeline -->
 	<nav class="top-bar">
 		<ul>
@@ -41,6 +27,29 @@
 			<li class="sort-items" id="year-of-release">Year Of release</li>
 		</ul>
 	</nav>
+	<!-- the form to add a new movie -->
+	<div id="popUp">	
+		<form name="Add new movie" id="new-movie">
+			<label for="title">Title: </label><br>
+			<input type="text" name="title" id="input-title"><br>
+
+			<label for="genre">Genre: </label><br>
+			<input type="text" name="genre" id="input-genre"><br>
+			
+			<label for="releaseYear">Release: </label><br>
+			<input placeholder="yyyy" type="number" name="releaseYear" id="input-releaseYear" maxlength="4"><br>
+			
+			<label for="url">Image URL: </label><br>
+			<input type="url" name="url" id="input-url"><br>
+			
+			<label for="rating">Rating: </label><br>
+			<input placeholder="1-10" type="number" min="1" max="10" name="rating" id="input-rating"><br><br>
+			
+			<button type="button" id="confirm-button">Confirm</button>
+			<button type="button" id="cancel-button">Cancel</button>
+		</form>
+		<img src="" alt="big-pic" id="big-pic">
+	</div>
 	<script src="movie_database.js"></script>
 </body>
 </html>
